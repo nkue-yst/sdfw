@@ -4,5 +4,9 @@
 
 int main()
 {
-    std::cout << "Hello world!!" << std::endl;
+    sdfw::init();
+
+    sdfw::openWindow(600, 400);
+
+    sdfw::quit();
 }

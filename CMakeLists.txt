@@ -32,10 +32,17 @@ endif()
 ### Create Target "sdfw" ###
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 set(SDFW_SRC
+    include/Command.hpp
+    include/sdfwComponent.hpp
     include/sdfw.h
+    include/Socket.hpp
     source/sdfw.cpp
+    source/Socket.cpp
 )
 add_library(sdfw STATIC ${SDFW_SRC})
+if (WIN32)
+    target_link_libraries(sdfw ws2_32)
+endif()
 
 
 ### Create Target "Sample" ###
@@ -48,9 +55,3 @@ target_link_libraries(Sample sdfw)
 
 ### Setup startup project ###
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Sample)
-
-
-### Setup thirdparty modules ###
-if(WIN32)
-elseif(APPLE)
-endif()
