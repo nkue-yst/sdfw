@@ -5,33 +5,41 @@
 
 #pragma once
 
-#include <utility>
-
 namespace sdfw
 {
 
     /**
-     * @brief  Singleton base class
+     * @brief  Engine component base class
      */
-    template<typename T>
+    template<class T>
     class sdfwComponent
     {
+    private:
+        inline static T* pComponent = nullptr;
+
     public:
         /**
-         * @brief  Get singleton instance
+         * @brief  Get component (return self pointer)
          */
-        template<typename... Args>
-        static T& getInstance(Args... args)
+        [[nodiscard]]
+        T* get()
         {
-            static T instance{ std::forward<Args>(args)... };
-            return instance;
+            if (pComponent == nullptr)
+            {
+                T::create();
+            }
+
+            return pComponent;
         }
 
-    protected:
-        sdfwComponent() = default;
-        virtual ~sdfwComponent() = default;
-        sdfwComponent(const sdfwComponent&) = delete;
-        sdfwComponent& operator=(const sdfwComponent&) = delete;
+        /**
+         * @brief  Release this component
+         */
+        void release()
+        {
+            delete pComponent;
+            pComponent = nullptr;
+        }
     };
 
 }

@@ -15,12 +15,14 @@ namespace sdfw
     /**
      * @brief  Socket class
      */
-    class Socket : public sdfwComponent<Socket>
+    class sdfwSocket
     {
-    private:
-        friend class sdfwComponent;
-
     public:
+        /**
+         * @brief  Create instance
+         */
+        static sdfwSocket* create();
+
         /**
          * @brief  Execute opening window
          */

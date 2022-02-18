@@ -4,7 +4,8 @@
  */
 
 #include "sdfw.h"
-#include "Socket.hpp"
+#include "sdfwEngine.hpp"
+#include "sdfwSocket.hpp"
 
 #include <iostream>
 
@@ -18,7 +19,7 @@ namespace sdfw
 
     void openWindow(uint16_t width, uint16_t height)
     {
-        Socket::getInstance().execOpenWindow(width, height);
+        sdfwEngine::getComponent<sdfwSocket>()->execOpenWindow(width, height);
     }
 
     void quit()

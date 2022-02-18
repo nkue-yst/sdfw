@@ -3,7 +3,7 @@
  * @author  Y.Nakaue
  */
 
-#include "Socket.hpp"
+#include "sdfwSocket.hpp"
 
 #ifdef _WIN64
 #include <WinSock2.h>
@@ -14,15 +14,16 @@
 namespace sdfw
 {
 
-    /* Execute opening window */
-    void Socket::execOpenWindow(uint16_t width, uint16_t height)
+    /* Create instance */
+    sdfwSocket* sdfwSocket::create()
     {
-        WSADATA wsa_data;
-        WSAStartup(MAKEWORD(2, 0), &wsa_data);
+        return new sdfwSocket();
+    }
 
+    /* Execute opening window */
+    void sdfwSocket::execOpenWindow(uint16_t width, uint16_t height)
+    {
         std::cout << "Open window: " << width << ", " << height << std::endl;
-
-        WSACleanup();
     }
 
 }

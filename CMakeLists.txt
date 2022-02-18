@@ -33,11 +33,13 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 set(SDFW_SRC
     include/Command.hpp
-    include/sdfwComponent.hpp
     include/sdfw.h
-    include/Socket.hpp
+    include/sdfwComponent.hpp
+    include/sdfwEngine.hpp
+    include/sdfwSocket.hpp
     source/sdfw.cpp
-    source/Socket.cpp
+    source/sdfwEngine.cpp
+    source/sdfwSocket.cpp
 )
 add_library(sdfw STATIC ${SDFW_SRC})
 if (WIN32)
