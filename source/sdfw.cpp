@@ -14,7 +14,7 @@ namespace sdfw
 
     void init()
     {
-        SDFW_ENGINE(Socket)->init();
+        sdfwEngine::get()->init();
     }
 
     void openWindow(uint16_t width, uint16_t height)
@@ -24,7 +24,7 @@ namespace sdfw
 
     void quit()
     {
-        std::cout << "quit()" << std::endl;
+        sdfwEngine::get()->quit();
     }
 
 }

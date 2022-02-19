@@ -21,9 +21,60 @@ namespace sdfw
     }
 
     /* Initialize socket */
-    bool sdfwSocket::init(uint32_t port)
+    void sdfwSocket::init()
     {
-        return true;
+    #ifdef _WIN64
+        WSADATA wsa_data;
+        uint32_t error_code;
+
+        /* Startup WinSock2 */
+        error_code = WSAStartup(MAKEWORD(2, 0), &wsa_data);
+        switch (error_code)
+        {
+        case WSASYSNOTREADY:
+            std::cout << "WSASYSNOTREADY" << std::endl;
+            break;
+
+        case WSAVERNOTSUPPORTED:
+            std::cout << "WSAVERNOTSUPPORTED" << std::endl;
+            break;
+
+        case WSAEINPROGRESS:
+            std::cout << "WSAEINPROGRESS" << std::endl;
+            break;
+
+        case WSAEPROCLIM:
+            std::cout << "WSAEPROCLIM" << std::endl;
+            break;
+
+        case WSAEFAULT:
+            std::cout << "WSAEFAULT" << std::endl;
+            break;
+
+        default:
+            break;
+        }
+
+        /* Create socket */
+        SOCKET sock;
+        sock = socket(AF_INET, SOCK_STREAM, 0);
+        if (sock == INVALID_SOCKET)
+        {
+            std::cout << "socket() failed" << std::endl;
+        }
+
+        /* Settings for server */
+        sockaddr_in server;
+        server.sin_family = AF_INET;
+        server.sin_port = htons(62491);
+        server.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+
+        /* Connect to server */
+        connect(sock, (sockaddr*)&server, sizeof(server));
+
+        /* Cleanup WinSock2 */
+        WSACleanup();
+    #endif
     }
 
     /* Execute opening window */

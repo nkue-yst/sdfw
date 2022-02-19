@@ -13,6 +13,7 @@ namespace sdfw
 {
 
     class sdfwSocket;
+    class sdfwTest;
 
     /**
      * @brief  Engine core class
@@ -25,6 +26,31 @@ namespace sdfw
     public:
         sdfwEngine();
         ~sdfwEngine();
+
+        /**
+         * @brief  Initialize all components
+         */
+        void init();
+
+        /**
+         * @brief  Quit and release all components
+         */
+        void quit();
+
+        /**
+         * @brief  Get engine instance
+         * @return  Engine instance
+         */
+        [[nodiscard]]
+        static sdfwEngine* get()
+        {
+            if (sdfwEngine::pEngine == nullptr)
+            {
+                sdfwEngine::pEngine = new sdfwEngine();
+            }
+
+            return sdfwEngine::pEngine;
+        }
 
         /**
          * @brief  Get engine component

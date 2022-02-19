@@ -25,9 +25,8 @@ namespace sdfw
 
         /**
          * @brief  Initialize socket
-         * @return  Success or failure
          */
-        bool init(uint32_t port = 62491);
+        void init();
 
         /**
          * @brief  Execute opening window
