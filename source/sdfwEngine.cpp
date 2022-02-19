@@ -15,6 +15,7 @@ namespace sdfw
 
     sdfwEngine::~sdfwEngine()
     {
+        delete sdfwEngine::pEngine;
         sdfwEngine::pEngine = nullptr;
     }
 

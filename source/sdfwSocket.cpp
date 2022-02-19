@@ -20,6 +20,12 @@ namespace sdfw
         return new sdfwSocket();
     }
 
+    /* Initialize socket */
+    bool sdfwSocket::init(uint32_t port)
+    {
+        return true;
+    }
+
     /* Execute opening window */
     void sdfwSocket::execOpenWindow(uint16_t width, uint16_t height)
     {

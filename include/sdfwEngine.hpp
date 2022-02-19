@@ -28,6 +28,7 @@ namespace sdfw
 
         /**
          * @brief  Get engine component
+         * @return  Specified engine component
          */
         template<class T>
         [[nodiscard]]
@@ -35,6 +36,7 @@ namespace sdfw
         {
             return std::get<sdfwComponent<T>>(sdfwEngine::pEngine->components_).get();
         }
+        #define SDFW_ENGINE(COMPONENT) sdfwEngine::getComponent<sdfw##COMPONENT>()
 
     private:
         /// Engine components

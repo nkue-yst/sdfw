@@ -24,6 +24,12 @@ namespace sdfw
         static sdfwSocket* create();
 
         /**
+         * @brief  Initialize socket
+         * @return  Success or failure
+         */
+        bool init(uint32_t port = 62491);
+
+        /**
          * @brief  Execute opening window
          */
         void execOpenWindow(uint16_t width, uint16_t height);

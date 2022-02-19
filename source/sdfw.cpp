@@ -14,12 +14,12 @@ namespace sdfw
 
     void init()
     {
-        std::cout << "init()" << std::endl;
+        SDFW_ENGINE(Socket)->init();
     }
 
     void openWindow(uint16_t width, uint16_t height)
     {
-        sdfwEngine::getComponent<sdfwSocket>()->execOpenWindow(width, height);
+        SDFW_ENGINE(Socket)->execOpenWindow(width, height);
     }
 
     void quit()
