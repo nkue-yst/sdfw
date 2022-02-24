@@ -58,6 +58,8 @@ namespace sdfw
     /* Quit and release all components */
     void sdfwEngine::quit()
     {
+        SDFW_ENGINE(Socket)->execQuit();
+
         components::releaseAll(this->components_);
     }
 

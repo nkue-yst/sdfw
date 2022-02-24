@@ -28,7 +28,7 @@ namespace sdfw
         {
             if (pComponent == nullptr)
             {
-                T::create();
+                pComponent = T::create();
             }
 
             return pComponent;

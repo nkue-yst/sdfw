@@ -32,7 +32,6 @@ endif()
 ### Create Target "sdfw" ###
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 set(SDFW_SRC
-    include/Command.hpp
     include/sdfw.h
     include/sdfwComponent.hpp
     include/sdfwEngine.hpp

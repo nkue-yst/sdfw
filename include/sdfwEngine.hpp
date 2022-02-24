@@ -12,8 +12,7 @@
 namespace sdfw
 {
 
-    class sdfwSocket;
-    class sdfwTest;
+    class IsdfwSocket;
 
     /**
      * @brief  Engine core class
@@ -62,12 +61,12 @@ namespace sdfw
         {
             return std::get<sdfwComponent<T>>(sdfwEngine::pEngine->components_).get();
         }
-        #define SDFW_ENGINE(COMPONENT) sdfwEngine::getComponent<sdfw##COMPONENT>()
+        #define SDFW_ENGINE(COMPONENT) sdfwEngine::getComponent<Isdfw##COMPONENT>()
 
     private:
         /// Engine components
         std::tuple<
-            sdfwComponent<sdfwSocket>
+            sdfwComponent<IsdfwSocket>
         > components_;
     };
 

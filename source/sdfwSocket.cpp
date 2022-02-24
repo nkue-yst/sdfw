@@ -4,26 +4,40 @@
  */
 
 #include "sdfwSocket.hpp"
-
-#ifdef _WIN64
-#include <WinSock2.h>
-#endif
-
+#include <charconv>
+#include <thread>
+#include <chrono>
 #include <iostream>
+#include <string>
 
 namespace sdfw
 {
+    constexpr uint16_t BUFF_SIZE = 512;
 
     /* Create instance */
-    sdfwSocket* sdfwSocket::create()
+    IsdfwSocket* IsdfwSocket::create()
     {
-        return new sdfwSocket();
+    #if defined _WIN64
+        return new sdfwWinSocket();
+    #elif defined __unix
+        return new sdfwUnixSocket();
+    #endif
+    }
+
+    sdfwWinSocket::sdfwWinSocket()
+        : sock_(0)
+    {
+    }
+
+    sdfwWinSocket::~sdfwWinSocket()
+    {
+        /* Cleanup WinSock2 */
+        WSACleanup();
     }
 
     /* Initialize socket */
-    void sdfwSocket::init()
+    void sdfwWinSocket::init()
     {
-    #ifdef _WIN64
         WSADATA wsa_data;
         uint32_t error_code;
 
@@ -56,31 +70,50 @@ namespace sdfw
         }
 
         /* Create socket */
-        SOCKET sock;
-        sock = socket(AF_INET, SOCK_STREAM, 0);
-        if (sock == INVALID_SOCKET)
+        this->sock_ = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+        if (this->sock_ == INVALID_SOCKET)
         {
             std::cout << "socket() failed" << std::endl;
         }
 
         /* Settings for server */
-        sockaddr_in server;
-        server.sin_family = AF_INET;
-        server.sin_port = htons(62491);
-        server.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+        this->server_.sin_family = AF_INET;
+        this->server_.sin_port = htons(62491);
+        this->server_.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
 
         /* Connect to server */
-        connect(sock, (sockaddr*)&server, sizeof(server));
-
-        /* Cleanup WinSock2 */
-        WSACleanup();
-    #endif
+        connect(this->sock_, (sockaddr*)&this->server_, sizeof(this->server_));
     }
 
     /* Execute opening window */
-    void sdfwSocket::execOpenWindow(uint16_t width, uint16_t height)
+    void sdfwWinSocket::execOpenWindow(uint32_t width, uint32_t height)
     {
-        std::cout << "Open window: " << width << ", " << height << std::endl;
+        char msg[BUFF_SIZE] = "openWindow/";
+        strcat(msg, std::to_string(width).c_str());
+        strcat(msg, "/");
+        strcat(msg, std::to_string(height).c_str());
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        int32_t result = send(this->sock_, msg, static_cast<int32_t>(strlen(msg) + 1), 0);
+        if (result == SOCKET_ERROR)
+        {
+            std::cout << "Send failed: " << WSAGetLastError() << std::endl;
+            closesocket(this->sock_);
+        }
+    }
+
+    /* Execute quit command */
+    void sdfwWinSocket::execQuit()
+    {
+        std::string msg = "quit";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        int32_t result = send(this->sock_, msg.c_str(), static_cast<int32_t>(strlen(msg.c_str())) + 1, 0);
+        if (result == SOCKET_ERROR)
+        {
+            std::cout << "Send failed: " << WSAGetLastError() << std::endl;
+            closesocket(this->sock_);
+        }
     }
 
 }
