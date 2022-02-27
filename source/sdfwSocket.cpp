@@ -88,12 +88,13 @@ namespace sdfw
     /* Execute opening window */
     void sdfwWinSocket::execOpenWindow(uint32_t width, uint32_t height)
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
         char msg[BUFF_SIZE] = "openWindow/";
         strcat(msg, std::to_string(width).c_str());
         strcat(msg, "/");
         strcat(msg, std::to_string(height).c_str());
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
         int32_t result = send(this->sock_, msg, static_cast<int32_t>(strlen(msg) + 1), 0);
         if (result == SOCKET_ERROR)
         {
@@ -105,9 +106,10 @@ namespace sdfw
     /* Execute quit command */
     void sdfwWinSocket::execQuit()
     {
-        std::string msg = "quit";
-
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+        std::string msg = "quit";
+        
         int32_t result = send(this->sock_, msg.c_str(), static_cast<int32_t>(strlen(msg.c_str())) + 1, 0);
         if (result == SOCKET_ERROR)
         {
