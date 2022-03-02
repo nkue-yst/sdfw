@@ -33,6 +33,11 @@ namespace sdfw
         virtual void init() = 0;
 
         /**
+         * @brief  Send message
+         */
+        virtual void sendMessage(const char* msg) = 0;
+
+        /**
          * @brief  Execute opening window
          */
         virtual void execOpenWindow(uint32_t width, uint32_t height) = 0;
@@ -41,6 +46,9 @@ namespace sdfw
          * @brief  Execute quit command
          */
         virtual void execQuit() = 0;
+
+    protected:
+        char sync_msg_;
     };
 
 
@@ -57,6 +65,11 @@ namespace sdfw
          * @brief  Initialize socket
          */
         void init() override;
+
+        /**
+         * @brief  Send message
+         */
+        void sendMessage(const char* msg) override;
 
         /**
          * @brief  Execute opening window

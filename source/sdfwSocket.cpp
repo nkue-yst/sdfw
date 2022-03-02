@@ -85,16 +85,10 @@ namespace sdfw
         connect(this->sock_, (sockaddr*)&this->server_, sizeof(this->server_));
     }
 
-    /* Execute opening window */
-    void sdfwWinSocket::execOpenWindow(uint32_t width, uint32_t height)
+    /* Send message */
+    void sdfwWinSocket::sendMessage(const char* msg)
     {
-        char ready_msg;
-        recv(this->sock_, &ready_msg, sizeof(char), 0);
-
-        char msg[BUFF_SIZE] = "openWindow/";
-        strcat(msg, std::to_string(width).c_str());
-        strcat(msg, "/");
-        strcat(msg, std::to_string(height).c_str());
+        recv(this->sock_, &this->sync_msg_, sizeof(char), 0);
 
         int32_t result = send(this->sock_, msg, static_cast<int32_t>(strlen(msg) + 1), 0);
         if (result == SOCKET_ERROR)
@@ -104,20 +98,23 @@ namespace sdfw
         }
     }
 
+    /* Execute opening window */
+    void sdfwWinSocket::execOpenWindow(uint32_t width, uint32_t height)
+    {
+        char msg[BUFF_SIZE] = "openWindow/";
+        strcat(msg, std::to_string(width).c_str());
+        strcat(msg, "/");
+        strcat(msg, std::to_string(height).c_str());
+
+        this->sendMessage(msg);
+    }
+
     /* Execute quit command */
     void sdfwWinSocket::execQuit()
     {
-        char ready_msg;
-        recv(this->sock_, &ready_msg, sizeof(char), 0);
-
-        std::string msg = "quit";
+        char msg[BUFF_SIZE] = "quit";
         
-        int32_t result = send(this->sock_, msg.c_str(), static_cast<int32_t>(strlen(msg.c_str())) + 1, 0);
-        if (result == SOCKET_ERROR)
-        {
-            std::cout << "Send failed: " << WSAGetLastError() << std::endl;
-            closesocket(this->sock_);
-        }
+        this->sendMessage(msg);
     }
 
 }
