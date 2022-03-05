@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>sdfw: C:/Users/Yoshito/Documents/Source/sdfw/include/sdfwSocket.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">sdfw<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('sdfw_socket_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">sdfwSocket.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sdfw_socket_8hpp.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifdef _WIN64</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;WinSock2.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacesdfw.html">sdfw</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html">   20</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classsdfw_1_1_isdfw_socket.html">IsdfwSocket</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html#ab76bc65a48d55072523675abfa662171">   23</a></span>        <span class="keyword">virtual</span> <a class="code hl_function" href="classsdfw_1_1_isdfw_socket.html#ab76bc65a48d55072523675abfa662171">~IsdfwSocket</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">static</span> <a class="code hl_class" href="classsdfw_1_1_isdfw_socket.html">IsdfwSocket</a>* <a class="code hl_function" href="classsdfw_1_1_isdfw_socket.html#a3a6b628165dad6d0450fcf37db53a2b8">create</a>();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html#a43cbe20d328a8d0935be1646ac323c82">   33</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1_isdfw_socket.html#a43cbe20d328a8d0935be1646ac323c82">init</a>() = 0;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html#aecb08e35430a2b542a963d6bbc111a1e">   38</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1_isdfw_socket.html#aecb08e35430a2b542a963d6bbc111a1e">sendMessage</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* msg) = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html#ad1a28c3c8478b7221f456d84a7fa41bb">   43</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1_isdfw_socket.html#ad1a28c3c8478b7221f456d84a7fa41bb">execOpenWindow</a>(uint32_t width, uint32_t height) = 0;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html#acc06cd6c84068e50940ce0a3ef4401e6">   48</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1_isdfw_socket.html#acc06cd6c84068e50940ce0a3ef4401e6">execQuit</a>() = 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classsdfw_1_1_isdfw_socket.html#a547b069f10ac35b4c1307392b433dea4">   51</a></span>        <span class="keywordtype">char</span> <a class="code hl_variable" href="classsdfw_1_1_isdfw_socket.html#a547b069f10ac35b4c1307392b433dea4">sync_msg_</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    };</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classsdfw_1_1sdfw_win_socket.html">   58</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classsdfw_1_1sdfw_win_socket.html">sdfwWinSocket</a> : <span class="keyword">public</span> <a class="code hl_class" href="classsdfw_1_1_isdfw_socket.html">IsdfwSocket</a></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_function" href="classsdfw_1_1sdfw_win_socket.html#ae616c2d2a7741bbd9972911f1d467ac0">sdfwWinSocket</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_function" href="classsdfw_1_1sdfw_win_socket.html#a986866e2ed39ed51382612d77ccddfa5">~sdfwWinSocket</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1sdfw_win_socket.html#ae30b77d9cb272fc3aba97c993f49fc9a">init</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1sdfw_win_socket.html#af2175d12d8ecb42dd28a25bafeaa6c2a">sendMessage</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* msg) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1sdfw_win_socket.html#af49ed646cf92f5e8aaa85d8f68b05b8d">execOpenWindow</a>(uint32_t width, uint32_t height) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsdfw_1_1sdfw_win_socket.html#ad1e1ef1d4c93e2f871c98159b635b9f2">execQuit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        SOCKET sock_;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        sockaddr_in server_;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    };</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classsdfw_1_1sdfw_unix_socket.html">   96</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classsdfw_1_1sdfw_unix_socket.html">sdfwUnixSocket</a> : <span class="keyword">public</span> <a class="code hl_class" href="classsdfw_1_1_isdfw_socket.html">IsdfwSocket</a></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    };</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html">sdfw::IsdfwSocket</a></div><div class="ttdoc">Socket interface class</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8hpp_source.html#l00020">sdfwSocket.hpp:21</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_a3a6b628165dad6d0450fcf37db53a2b8"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#a3a6b628165dad6d0450fcf37db53a2b8">sdfw::IsdfwSocket::create</a></div><div class="ttdeci">static IsdfwSocket * create()</div><div class="ttdoc">Create instance</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00018">sdfwSocket.cpp:18</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_a43cbe20d328a8d0935be1646ac323c82"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#a43cbe20d328a8d0935be1646ac323c82">sdfw::IsdfwSocket::init</a></div><div class="ttdeci">virtual void init()=0</div><div class="ttdoc">Initialize socket</div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_a547b069f10ac35b4c1307392b433dea4"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#a547b069f10ac35b4c1307392b433dea4">sdfw::IsdfwSocket::sync_msg_</a></div><div class="ttdeci">char sync_msg_</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8hpp_source.html#l00051">sdfwSocket.hpp:51</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_ab76bc65a48d55072523675abfa662171"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#ab76bc65a48d55072523675abfa662171">sdfw::IsdfwSocket::~IsdfwSocket</a></div><div class="ttdeci">virtual ~IsdfwSocket()=default</div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_acc06cd6c84068e50940ce0a3ef4401e6"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#acc06cd6c84068e50940ce0a3ef4401e6">sdfw::IsdfwSocket::execQuit</a></div><div class="ttdeci">virtual void execQuit()=0</div><div class="ttdoc">Execute quit command</div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_ad1a28c3c8478b7221f456d84a7fa41bb"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#ad1a28c3c8478b7221f456d84a7fa41bb">sdfw::IsdfwSocket::execOpenWindow</a></div><div class="ttdeci">virtual void execOpenWindow(uint32_t width, uint32_t height)=0</div><div class="ttdoc">Execute opening window</div></div>
+<div class="ttc" id="aclasssdfw_1_1_isdfw_socket_html_aecb08e35430a2b542a963d6bbc111a1e"><div class="ttname"><a href="classsdfw_1_1_isdfw_socket.html#aecb08e35430a2b542a963d6bbc111a1e">sdfw::IsdfwSocket::sendMessage</a></div><div class="ttdeci">virtual void sendMessage(const char *msg)=0</div><div class="ttdoc">Send message</div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_unix_socket_html"><div class="ttname"><a href="classsdfw_1_1sdfw_unix_socket.html">sdfw::sdfwUnixSocket</a></div><div class="ttdoc">Socket class for UNIX-based OS</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8hpp_source.html#l00096">sdfwSocket.hpp:97</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html">sdfw::sdfwWinSocket</a></div><div class="ttdoc">Socket class for Windows</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8hpp_source.html#l00058">sdfwSocket.hpp:59</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html_a986866e2ed39ed51382612d77ccddfa5"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html#a986866e2ed39ed51382612d77ccddfa5">sdfw::sdfwWinSocket::~sdfwWinSocket</a></div><div class="ttdeci">~sdfwWinSocket() override</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00032">sdfwSocket.cpp:32</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html_ad1e1ef1d4c93e2f871c98159b635b9f2"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html#ad1e1ef1d4c93e2f871c98159b635b9f2">sdfw::sdfwWinSocket::execQuit</a></div><div class="ttdeci">void execQuit() override</div><div class="ttdoc">Execute quit command</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00113">sdfwSocket.cpp:113</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html_ae30b77d9cb272fc3aba97c993f49fc9a"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html#ae30b77d9cb272fc3aba97c993f49fc9a">sdfw::sdfwWinSocket::init</a></div><div class="ttdeci">void init() override</div><div class="ttdoc">Initialize socket</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00039">sdfwSocket.cpp:39</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html_ae616c2d2a7741bbd9972911f1d467ac0"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html#ae616c2d2a7741bbd9972911f1d467ac0">sdfw::sdfwWinSocket::sdfwWinSocket</a></div><div class="ttdeci">sdfwWinSocket()</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00027">sdfwSocket.cpp:27</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html_af2175d12d8ecb42dd28a25bafeaa6c2a"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html#af2175d12d8ecb42dd28a25bafeaa6c2a">sdfw::sdfwWinSocket::sendMessage</a></div><div class="ttdeci">void sendMessage(const char *msg) override</div><div class="ttdoc">Send message</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00089">sdfwSocket.cpp:89</a></div></div>
+<div class="ttc" id="aclasssdfw_1_1sdfw_win_socket_html_af49ed646cf92f5e8aaa85d8f68b05b8d"><div class="ttname"><a href="classsdfw_1_1sdfw_win_socket.html#af49ed646cf92f5e8aaa85d8f68b05b8d">sdfw::sdfwWinSocket::execOpenWindow</a></div><div class="ttdeci">void execOpenWindow(uint32_t width, uint32_t height) override</div><div class="ttdoc">Execute opening window</div><div class="ttdef"><b>Definition:</b> <a href="sdfw_socket_8cpp_source.html#l00102">sdfwSocket.cpp:102</a></div></div>
+<div class="ttc" id="anamespacesdfw_html"><div class="ttname"><a href="namespacesdfw.html">sdfw</a></div><div class="ttdef"><b>Definition:</b> <a href="sdfw_8h_source.html#l00010">sdfw.h:11</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="sdfw_socket_8hpp.html">sdfwSocket.hpp</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>
