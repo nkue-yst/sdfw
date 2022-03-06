@@ -27,9 +27,10 @@
 \section{描画のための設定}
 \subsection{ウィンドウの作成}
 \noindent
-\tab void openWindow(uint32\_t width, uint32\_t height) \\
+\tab int32\_t openWindow(uint32\_t width, uint32\_t height) \\
 \tab \underline{引数} \tab width: 横幅，height: 高さ \\
-\tab \underline{返り値} \tab 無し
+\tab \underline{返り値} \tab 作成したウィンドウID \\\\
+描画を行うためのウィンドウを作成し、画面前面に表示する。引数には作成するウィンドウの横幅と高さを指定する。1つのプログラムの中で複数のウィンドウを作成することが可能で、返り値として作成したウィンドウに割り当てられたウィンドウIDを返す。基本的に、作成した順に0からの連番で整数値が返される。
 
 
 \end{document}

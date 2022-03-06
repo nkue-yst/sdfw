@@ -17,9 +17,12 @@ namespace sdfw
         sdfwEngine::get()->init();
     }
 
-    void openWindow(uint32_t width, uint32_t height)
+    int32_t openWindow(uint32_t width, uint32_t height)
     {
         SDFW_ENGINE(Socket)->execOpenWindow(width, height);
+        window_index++;
+
+        return window_index - 1;
     }
 
     void quit()
