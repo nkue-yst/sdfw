@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Color.hpp"
 #include <cstdint>
 
 namespace sdfw
@@ -19,6 +20,15 @@ namespace sdfw
      */
     void quit();
 
+    namespace System
+    {
+        /**
+         * @brief  Update all drawings to the latest state
+         * @return  Whether to exit the main loop
+         */
+        bool update();
+    }
+
     /**
      * @brief  Open new window
      * @param  (width)  Width of the new window
@@ -32,6 +42,16 @@ namespace sdfw
      * @param  (win_id)  The ID of window to close
      */
     void closeWindow(int32_t win_id);
+
+    namespace Scene
+    {
+        /**
+         * @brief  Set new background color
+         * @param  (color)  New background color
+         * @param  (win_id)  Target window ID
+         */
+        void setBackground(Color color, int32_t win_id = 0);
+    }
 
     static uint32_t window_index = 0;
 }

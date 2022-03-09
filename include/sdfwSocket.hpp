@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Color.hpp"
 #include <cstdint>
 
 #ifdef _WIN64
@@ -48,6 +49,18 @@ namespace sdfw
         virtual void execCloseWIndow(int32_t win_id) = 0;
 
         /**
+         * @brief  Execute setting background color
+         * @param  (color)  New background color
+         * @param  (win_id)  Target window ID
+         */
+        virtual void execSetBackground(Color color, int32_t win_id) = 0;
+
+        /**
+         * @brief  Execute system update
+         */
+        virtual void execUpdate() = 0;
+
+        /**
          * @brief  Execute quit command
          */
         virtual void execQuit() = 0;
@@ -85,6 +98,18 @@ namespace sdfw
          * @brief  Execute close window
          */
         void execCloseWIndow(int32_t win_id) override;
+
+        /**
+         * @brief  Execute setting background color
+         * @param  (color)  New background color
+         * @param  (win_id)  Target window ID
+         */
+        void execSetBackground(Color color, int32_t win_id) override;
+
+        /**
+         * @brief  Execute system update
+         */
+        void execUpdate() override;
 
         /**
          * @brief  Execute quit command

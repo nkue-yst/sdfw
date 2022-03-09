@@ -117,6 +117,27 @@ namespace sdfw
         this->sendMessage(msg);
     }
 
+    void sdfwWinSocket::execSetBackground(Color color, int32_t win_id)
+    {
+        char msg[BUFF_SIZE] = "setBackground/";
+        strcat_s(msg, std::to_string(color.r).c_str());
+        strcat_s(msg, "/");
+        strcat_s(msg, std::to_string(color.g).c_str());
+        strcat_s(msg, "/");
+        strcat_s(msg, std::to_string(color.b).c_str());
+        strcat_s(msg, "/");
+        strcat_s(msg, std::to_string(win_id).c_str());
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwWinSocket::execUpdate()
+    {
+        char msg[BUFF_SIZE] = "update";
+
+        this->sendMessage(msg);
+    }
+
     void sdfwWinSocket::execQuit()
     {
         char msg[BUFF_SIZE] = "quit";

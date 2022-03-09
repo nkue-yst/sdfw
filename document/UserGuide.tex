@@ -13,6 +13,13 @@
 \begin{document}
 \NumTabs{20}
 
+\newcommand{\function}[3]{
+  \noindent
+  \tab \texttt{#1} \\
+  \tab \underline{引数} \tab #2 \\
+  \tab \underline{返り値} \tab #3 \\\par
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,15 +33,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{プログラムの開始と終了}
 \subsection{ライブラリ機能の初期化}
-\noindent
-\tab void init() \\
-\tab \underline{引数} \tab 無し \\
-\tab \underline{返り値} \tab 無し \\
+\function{void init()}{無し}{無し}
 
 \subsection{ライブラリ機能の終了処理}
-\tab void quit() \\
-\tab \underline{引数} \tab 無し \\
-\tab \underline{返り値} \tab 無し \\
+\function{void quit()}{無し}{無し}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% メインループ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{メインループ}
+\subsection{描画内容の更新}
+\function{bool System::update}{無し}{メインループの更新可否}
+描画内容を最新の状態に更新する。常に true を返す。
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,17 +53,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{描画のための設定}
 \subsection{ウィンドウの作成}
-\noindent
-\tab int32\_t openWindow(uint32\_t width, uint32\_t height) \\
-\tab \underline{引数} \tab width: 横幅，height: 高さ \\
-\tab \underline{返り値} \tab 作成したウィンドウID \\\par
+\function{int32\_t openWindow(uint32\_t width, uint32\_t height)}{width: 横幅，height: 高さ}{作成したウィンドウID}
 描画を行うためのウィンドウを作成し，画面前面に表示する．引数には作成するウィンドウの横幅と高さを指定する．1つのプログラムの中で複数のウィンドウを作成することが可能で，返り値として作成したウィンドウに割り当てられたウィンドウIDを返す．ウィンドウIDは，作成した順に0からの連番で整数値が返される．
 
 \subsection{ウィンドウを閉じる}
-\noindent
-\tab void closeWindow(int32\_t win\_id) \\
-\tab \underline{引数} \tab win\_id: 閉じるウィンドウのID \\
-\tab \underline{返り値} \tab 無し \\\par
+\function{void closeWindow(int32\_t win\_id)}{win\_id: 閉じるウィンドウのID}{無し}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 主な描画関数
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{主な描画関数}
+\subsection{背景色を変更}
+\function{void setBackground(Color color, int32\_t win\_id = 0)}{color: 背景色，win\_id: 背景色を設定するウィンドウのID}{無し}
+背景色を引数で指定子た色に設定する。新たな背景色は、この関数によって設定した次のフレーム（System::update()が呼び出されたタイミング）で反映される。
 
 
 \end{document}

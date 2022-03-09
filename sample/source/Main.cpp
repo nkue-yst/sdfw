@@ -6,18 +6,31 @@
 
 #define delay(ms) std::this_thread::sleep_for(std::chrono::milliseconds(##ms));
 
+using namespace sdfw;
+
 int main()
 {
-    sdfw::init();
+    init();
 
-    int32_t win = sdfw::openWindow(1280, 720);
-    int32_t sub_win = sdfw::openWindow(500, 200);
+    int32_t win = openWindow(1280, 720);
+    int32_t sub_win = openWindow(500, 200);
 
-    delay(1000);
+    Scene::setBackground(Color(255, 128, 0), sub_win);
 
-    sdfw::closeWindow(sub_win);
+    uint32_t i = 0;
+    while (System::update())
+    {
+        delay(2000);
 
-    delay(1000);
+        if (i > 5)
+            break;
 
-    sdfw::quit();
+        ++i;
+    }
+
+    closeWindow(sub_win);
+
+    delay(2000);
+
+    quit();
 }
