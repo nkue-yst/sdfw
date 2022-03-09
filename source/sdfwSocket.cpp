@@ -10,6 +10,10 @@
 #include <iostream>
 #include <string>
 
+#ifdef _WIN64
+#include <WS2tcpip.h>
+#endif
+
 namespace sdfw
 {
     constexpr uint16_t BUFF_SIZE = 512;
@@ -77,7 +81,7 @@ namespace sdfw
         /* Settings for server */
         this->server_.sin_family = AF_INET;
         this->server_.sin_port = htons(62491);
-        this->server_.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+        InetPton(this->server_.sin_family, "127.0.0.1", &this->server_.sin_addr.S_un.S_addr);
 
         /* Connect to server */
         connect(this->sock_, (sockaddr*)&this->server_, sizeof(this->server_));
@@ -98,9 +102,9 @@ namespace sdfw
     void sdfwWinSocket::execOpenWindow(uint32_t width, uint32_t height)
     {
         char msg[BUFF_SIZE] = "openWindow/";
-        strcat(msg, std::to_string(width).c_str());
-        strcat(msg, "/");
-        strcat(msg, std::to_string(height).c_str());
+        strcat_s(msg, std::to_string(width).c_str());
+        strcat_s(msg, "/");
+        strcat_s(msg, std::to_string(height).c_str());
 
         this->sendMessage(msg);
     }
@@ -108,7 +112,7 @@ namespace sdfw
     void sdfwWinSocket::execCloseWIndow(int32_t win_id)
     {
         char msg[BUFF_SIZE] = "closeWindow/";
-        strcat(msg, std::to_string(win_id).c_str());
+        strcat_s(msg, std::to_string(win_id).c_str());
 
         this->sendMessage(msg);
     }
