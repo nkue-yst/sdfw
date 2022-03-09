@@ -23,7 +23,6 @@ namespace sdfw
         sdfwEngine::pEngine = nullptr;
     }
 
-    /* Initialize all components */
     void sdfwEngine::init()
     {
         SDFW_ENGINE(Socket)->init();
@@ -55,7 +54,6 @@ namespace sdfw
         }
     }
 
-    /* Quit and release all components */
     void sdfwEngine::quit()
     {
         SDFW_ENGINE(Socket)->execQuit();

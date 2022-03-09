@@ -43,6 +43,11 @@ namespace sdfw
         virtual void execOpenWindow(uint32_t width, uint32_t height) = 0;
 
         /**
+         * @brief  Execute close window
+         */
+        virtual void execCloseWIndow(int32_t win_id) = 0;
+
+        /**
          * @brief  Execute quit command
          */
         virtual void execQuit() = 0;
@@ -75,6 +80,11 @@ namespace sdfw
          * @brief  Execute opening window
          */
         void execOpenWindow(uint32_t width, uint32_t height) override;
+
+        /**
+         * @brief  Execute close window
+         */
+        void execCloseWIndow(int32_t win_id) override;
 
         /**
          * @brief  Execute quit command

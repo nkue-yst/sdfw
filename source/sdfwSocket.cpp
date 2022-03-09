@@ -14,7 +14,6 @@ namespace sdfw
 {
     constexpr uint16_t BUFF_SIZE = 512;
 
-    /* Create instance */
     IsdfwSocket* IsdfwSocket::create()
     {
     #if defined _WIN64
@@ -35,7 +34,6 @@ namespace sdfw
         WSACleanup();
     }
 
-    /* Initialize socket */
     void sdfwWinSocket::init()
     {
         WSADATA wsa_data;
@@ -85,7 +83,6 @@ namespace sdfw
         connect(this->sock_, (sockaddr*)&this->server_, sizeof(this->server_));
     }
 
-    /* Send message */
     void sdfwWinSocket::sendMessage(const char* msg)
     {
         recv(this->sock_, &this->sync_msg_, sizeof(char), 0);
@@ -98,7 +95,6 @@ namespace sdfw
         }
     }
 
-    /* Execute opening window */
     void sdfwWinSocket::execOpenWindow(uint32_t width, uint32_t height)
     {
         char msg[BUFF_SIZE] = "openWindow/";
@@ -109,7 +105,14 @@ namespace sdfw
         this->sendMessage(msg);
     }
 
-    /* Execute quit command */
+    void sdfwWinSocket::execCloseWIndow(int32_t win_id)
+    {
+        char msg[BUFF_SIZE] = "closeWindow/";
+        strcat(msg, std::to_string(win_id).c_str());
+
+        this->sendMessage(msg);
+    }
+
     void sdfwWinSocket::execQuit()
     {
         char msg[BUFF_SIZE] = "quit";
