@@ -9,6 +9,8 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{here}
 \usepackage{tabto}
+\usepackage{listings}
+\usepackage{jlisting}
 
 \begin{document}
 \NumTabs{20}
@@ -18,6 +20,28 @@
   \tab \texttt{#1} \\
   \tab \underline{引数} \tab #2 \\
   \tab \underline{返り値} \tab #3 \\\par
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setting for source code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -45,7 +69,7 @@
 \section{メインループ}
 \subsection{描画内容の更新}
 \function{bool System::update}{無し}{メインループの更新可否}
-描画内容を最新の状態に更新する。常に true を返す。
+描画内容を最新の状態に更新する。常にtrueを返す。\\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,6 +91,39 @@
 \subsection{背景色を変更}
 \function{void setBackground(Color color, int32\_t win\_id = 0)}{color: 背景色，win\_id: 背景色を設定するウィンドウのID}{無し}
 背景色を引数で指定子た色に設定する。新たな背景色は、この関数によって設定した次のフレーム（System::update()が呼び出されたタイミング）で反映される。
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% イベントに関する機能
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{イベントに関する機能}
+以下の機能はSystem::update()が呼び出されたタイミングで状態が更新されているため、少し古い情報が得られる場合がある。
+\subsection{マウス入力}
+\subsubsection{マウスボタン入力状態の取得（押されているかを取得）}
+\function{bool pressed(int8\_t button)}{button: マウスボタン（マクロ）}{指定したマウスボタンが押されているか}
+入力状態を得たいマウスボタンの指定には、マクロによるビットマスクを使用する。ここで使用するマクロは以下の表\ref{macro-MouseButton}のように定義されている。また、これらをビットORで結合して引数に指定することで、複数のボタンが同時に入力されているかを得ることもできる。
+\begin{table}[H]
+  \caption{マウスボタンを表すマクロ名}
+  \label{macro-MouseButton}
+  \centering
+  \begin{tabular}{cc}
+    \hline
+    ボタン & マクロ名 \\
+    \hline \hline
+    マウス左ボタン & LEFT \\
+    マウス中ボタン & MIDDLE \\
+    マウス右ボタン & RIGHT \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{lstlisting}[caption=使用例, label=macro-GetMouseButtonState, keepspaces=true]
+  // マウス左ボタンが押されているかを取得
+  sdfw::Mouse::pressed(LEFT);
+
+  // マウス左・右ボタンが両方押されているかを取得
+  sdfw::Mouse::pressed(LEFT | RIGHT);
+\end{lstlisting}
 
 
 \end{document}

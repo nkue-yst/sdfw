@@ -4,7 +4,8 @@
  */
 
 #include "sdfwEngine.hpp"
-#include "sdfwSocket.hpp"
+#include "sdfwMessenger.hpp"
+#include "sdfwMouse.hpp"
 
 #include <iostream>
 #include <utility>
@@ -13,6 +14,7 @@ namespace sdfw
 {
 
     sdfwEngine::sdfwEngine()
+        : loop_flag_(true)
     {
         sdfwEngine::pEngine = this;
     }
@@ -25,7 +27,7 @@ namespace sdfw
 
     void sdfwEngine::init()
     {
-        SDFW_ENGINE(Socket)->init();
+        SDFW_ENGINE(Messenger)->init();
     }
 
     namespace components
@@ -56,7 +58,9 @@ namespace sdfw
 
     void sdfwEngine::quit()
     {
-        SDFW_ENGINE(Socket)->execQuit();
+        SDFW_ENGINE(Messenger)->execQuit();
+
+        this->loop_flag_ = false;
 
         components::releaseAll(this->components_);
     }

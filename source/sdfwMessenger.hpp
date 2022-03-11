@@ -1,5 +1,5 @@
 /**
- * @file    Socket.hpp
+ * @file    sdfwMessenger.hpp
  * @author  Y.Nakaue
  */
 
@@ -7,6 +7,8 @@
 
 #include "Color.hpp"
 #include <cstdint>
+#include <string>
+#include <vector>
 
 #ifdef _WIN64
 #include <WinSock2.h>
@@ -18,15 +20,15 @@ namespace sdfw
     /**
      * @brief  Socket interface class
      */
-    class IsdfwSocket
+    class IsdfwMessenger
     {
     public:
-        virtual ~IsdfwSocket() = default;
+        virtual ~IsdfwMessenger() = default;
 
         /**
          * @brief  Create instance
          */
-        static IsdfwSocket* create();
+        static IsdfwMessenger* create();
 
         /**
          * @brief  Initialize socket
@@ -65,19 +67,24 @@ namespace sdfw
          */
         virtual void execQuit() = 0;
 
+        /**
+         * @brief  Receive events
+         */
+        virtual void recvEvents() = 0;
+
     protected:
-        char sync_msg_;
+        char sync_msg_buff_;
     };
 
 
     /**
      * @brief  Socket class for Windows
      */
-    class sdfwWinSocket : public IsdfwSocket
+    class sdfwWinMessenger : public IsdfwMessenger
     {
     public:
-        sdfwWinSocket();
-        ~sdfwWinSocket() override;
+        sdfwWinMessenger();
+        ~sdfwWinMessenger() override;
 
         /**
          * @brief  Initialize socket
@@ -116,19 +123,38 @@ namespace sdfw
          */
         void execQuit() override;
 
-    private:
-        /// Client socket
-        SOCKET sock_;
+        /**
+         * @brief  Receive events
+         */
+        void recvEvents() override;
 
-        /// Server socket info
-        sockaddr_in server_;
+    private:
+        /**
+         * @brief  Parse a string
+         * @param  (str)  Target string
+         * @param  (delimiter)  Character used to delimit string
+         * @return  Split word list
+         */
+        static std::vector<std::string> parseMessage(const std::string& str, const char delimiter = '/');
+
+        /// Client socket for command
+        SOCKET cmd_sock_;
+
+        /// Server socket info for command
+        sockaddr_in cmd_server_;
+
+        /// Client socket for event
+        SOCKET ev_sock_;
+
+        /// Server socket info for event
+        sockaddr_in ev_server_;
     };
 
 
     /**
      * @brief  Socket class for UNIX-based OS
      */
-    class sdfwUnixSocket : public IsdfwSocket
+    class sdfwUnixMessenger : public IsdfwMessenger
     {
     };
 

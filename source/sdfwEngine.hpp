@@ -12,7 +12,8 @@
 namespace sdfw
 {
 
-    class IsdfwSocket;
+    class IsdfwMessenger;
+    class IsdfwMouse;
 
     /**
      * @brief  Engine core class
@@ -63,10 +64,15 @@ namespace sdfw
         }
         #define SDFW_ENGINE(COMPONENT) sdfwEngine::getComponent<Isdfw##COMPONENT>()
 
+        /// Event receiving flag
+        bool loop_flag_;
+
+
     private:
         /// Engine components
         std::tuple<
-            sdfwComponent<IsdfwSocket>
+            sdfwComponent<IsdfwMouse>,
+            sdfwComponent<IsdfwMessenger>
         > components_;
     };
 

@@ -31,15 +31,8 @@ endif()
 
 ### Create Target "sdfw" ###
 include_directories(${PROJECT_SOURCE_DIR}/include/)
-set(SDFW_SRC
-    include/sdfw.h
-    include/sdfwComponent.hpp
-    include/sdfwEngine.hpp
-    include/sdfwSocket.hpp
-    source/sdfw.cpp
-    source/sdfwEngine.cpp
-    source/sdfwSocket.cpp
-)
+file(GLOB SDFW_FILE source/*.cpp source/*.hpp include/*.h*)
+set(SDFW_SRC ${SDFW_FILE})
 add_library(sdfw STATIC ${SDFW_SRC})
 if (WIN32)
     target_link_libraries(sdfw ws2_32)

@@ -6,6 +6,9 @@
 #pragma once
 
 #include "Color.hpp"
+#include "Mouse.hpp"
+#include "Point.hpp"
+
 #include <cstdint>
 
 namespace sdfw

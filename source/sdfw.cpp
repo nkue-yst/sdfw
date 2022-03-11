@@ -5,16 +5,29 @@
 
 #include "sdfw.h"
 #include "sdfwEngine.hpp"
-#include "sdfwSocket.hpp"
+#include "sdfwMessenger.hpp"
 
 #include <iostream>
+#include <thread>
 
 namespace sdfw
 {
 
+    namespace events
+    {
+        void startEventThread()
+        {
+            SDFW_ENGINE(Messenger)->recvEvents();
+        }
+    }
+
     void init()
     {
         sdfwEngine::get()->init();
+
+        /* Start thread for receiving events */
+        std::thread th_ev(events::startEventThread);
+        th_ev.detach();
     }
 
     void quit()
@@ -26,7 +39,7 @@ namespace sdfw
     {
         bool update()
         {
-            SDFW_ENGINE(Socket)->execUpdate();
+            SDFW_ENGINE(Messenger)->execUpdate();
 
             return true;
         }
@@ -34,7 +47,7 @@ namespace sdfw
 
     int32_t openWindow(uint32_t width, uint32_t height)
     {
-        SDFW_ENGINE(Socket)->execOpenWindow(width, height);
+        SDFW_ENGINE(Messenger)->execOpenWindow(width, height);
         window_index++;
 
         return window_index - 1;
@@ -42,14 +55,14 @@ namespace sdfw
 
     void closeWindow(int32_t win_id)
     {
-        SDFW_ENGINE(Socket)->execCloseWIndow(win_id);
+        SDFW_ENGINE(Messenger)->execCloseWIndow(win_id);
     }
 
     namespace Scene
     {
         void setBackground(Color color, int32_t win_id)
         {
-            SDFW_ENGINE(Socket)->execSetBackground(color, win_id);
+            SDFW_ENGINE(Messenger)->execSetBackground(color, win_id);
         }
     }
 
