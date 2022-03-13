@@ -58,6 +58,13 @@ namespace sdfw
         virtual void execSetBackground(Color color, int32_t win_id) = 0;
 
         /**
+         * @brief  Execute print string
+         * @param  (str)  Output string
+         * @param  (win_id) The ID of window to print string
+         */
+        virtual void execPrint(std::string str, int32_t win_id) = 0;
+
+        /**
          * @brief  Execute system update
          */
         virtual void execUpdate() = 0;
@@ -112,6 +119,13 @@ namespace sdfw
          * @param  (win_id)  Target window ID
          */
         void execSetBackground(Color color, int32_t win_id) override;
+
+        /**
+         * @brief  Execute print string
+         * @param  (str)  Output string
+         * @param  (win_id) The ID of window to print string
+         */
+        void execPrint(std::string str, int32_t win_id) override;
 
         /**
          * @brief  Execute system update

@@ -10,6 +10,7 @@
 #include "Point.hpp"
 
 #include <cstdint>
+#include <string>
 
 namespace sdfw
 {
@@ -45,6 +46,13 @@ namespace sdfw
      * @param  (win_id)  The ID of window to close
      */
     void closeWindow(int32_t win_id);
+
+    /**
+     * @brief  Print string
+     * @param  (str)  Output string
+     * @param  (win_id)  The ID of window to print string
+     */
+    void print(std::string str, int32_t win_id = 0);
 
     namespace Scene
     {

@@ -149,6 +149,16 @@ namespace sdfw
         this->sendMessage(msg);
     }
 
+    void sdfwWinMessenger::execPrint(std::string str, int32_t win_id)
+    {
+        char msg[BUFF_SIZE] = "print/";
+        strcat_s(msg, str.c_str());
+        strcat_s(msg, "/");
+        strcat_s(msg, std::to_string(win_id).c_str());
+
+        this->sendMessage(msg);
+    }
+
     void sdfwWinMessenger::execUpdate()
     {
         char msg[BUFF_SIZE] = "update";

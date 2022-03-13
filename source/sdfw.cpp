@@ -58,6 +58,11 @@ namespace sdfw
         SDFW_ENGINE(Messenger)->execCloseWIndow(win_id);
     }
 
+    void print(std::string str, int32_t win_id)
+    {
+        SDFW_ENGINE(Messenger)->execPrint(str, win_id);
+    }
+
     namespace Scene
     {
         void setBackground(Color color, int32_t win_id)

@@ -17,12 +17,8 @@ int main()
     uint32_t i = 0;
     while (System::update())
     {
-        std::system("cls");
-        std::cout << "Left  : " << Mouse::pressed(LEFT) << std::endl;
-        std::cout << "Middle: " << Mouse::pressed(MIDDLE) << std::endl;
-        std::cout << "Right : " << Mouse::pressed(RIGHT) << std::endl;
-        std::cout << "Both  : " << Mouse::pressed(LEFT | RIGHT) << std::endl;
-
+        print("Test: " + std::to_string(i));
+        
         if (++i > 50000)
             break;
     }
