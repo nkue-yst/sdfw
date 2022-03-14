@@ -7,6 +7,7 @@
 
 #include "sdfwComponent.hpp"
 
+#include <chrono>
 #include <tuple>
 
 namespace sdfw
@@ -67,6 +68,11 @@ namespace sdfw
         /// Event receiving flag
         bool loop_flag_;
 
+        /// Tick count
+        uint32_t tick_;
+    
+        /// Start time stamp
+        std::chrono::system_clock::time_point start_time_;
 
     private:
         /// Engine components

@@ -33,6 +33,21 @@ namespace sdfw
         bool update();
     }
 
+    namespace Time
+    {
+        /**
+         * @brief  Get the count of ticks (called "update()") since the engine startup
+         * @return  Tick count since the engine startup
+         */
+        uint32_t getTicks();
+
+        /**
+         * @brief  Get the time (milliseconds) since the engine startup
+         * @return  Elapsed time since the engine startup
+         */
+        uint32_t getMillisec();
+    }
+
     /**
      * @brief  Open new window
      * @param  (width)  Width of the new window

@@ -40,8 +40,25 @@ namespace sdfw
         bool update()
         {
             SDFW_ENGINE(Messenger)->execUpdate();
+            sdfwEngine::get()->tick_++;
 
             return true;
+        }
+    }
+
+    namespace Time
+    {
+        uint32_t getTicks()
+        {
+            return sdfwEngine::get()->tick_;
+        }
+
+        uint32_t getMillisec()
+        {
+            std::chrono::system_clock::time_point now;  // Current time stamp
+            now = std::chrono::system_clock::now();
+
+            return static_cast<uint32_t>(std::chrono::duration_cast<std::chrono::milliseconds>(now - sdfwEngine::get()->start_time_).count());
         }
     }
 

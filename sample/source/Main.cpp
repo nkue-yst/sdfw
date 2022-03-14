@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <string>
 #include <thread>
 
 #define delay(ms) std::this_thread::sleep_for(std::chrono::milliseconds(##ms));
@@ -14,12 +15,14 @@ int main()
 
     int32_t win = openWindow(1280, 720);
 
-    uint32_t i = 0;
+    std::string str;
     while (System::update())
     {
-        print("Test: " + std::to_string(i));
+        str = "Ticks: " + std::to_string(Time::getTicks()) + ", Time: " + std::to_string(Time::getMillisec()) + "ms";
+
+        print(str);
         
-        if (++i > 50000)
+        if (Time::getTicks() > 50000)
             break;
     }
 

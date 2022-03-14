@@ -15,6 +15,7 @@ namespace sdfw
 
     sdfwEngine::sdfwEngine()
         : loop_flag_(true)
+        , tick_(0)
     {
         sdfwEngine::pEngine = this;
     }
@@ -28,6 +29,7 @@ namespace sdfw
     void sdfwEngine::init()
     {
         SDFW_ENGINE(Messenger)->init();
+        this->start_time_ = std::chrono::system_clock::now();
     }
 
     namespace components
