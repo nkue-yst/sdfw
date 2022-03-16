@@ -30,6 +30,7 @@ namespace sdfw
     {
         SDFW_ENGINE(Messenger)->init();
         this->start_time_ = std::chrono::system_clock::now();
+        this->pre_time_ = std::chrono::system_clock::now();
     }
 
     namespace components

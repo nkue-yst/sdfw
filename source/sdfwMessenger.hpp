@@ -6,6 +6,8 @@
 #pragma once
 
 #include "Color.hpp"
+#include "Shape.hpp"
+
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -56,6 +58,13 @@ namespace sdfw
          * @param  (win_id)  Target window ID
          */
         virtual void execSetBackground(Color color, int32_t win_id) = 0;
+
+        /**
+         * @brief  Execute drawing some shape
+         * @param (name) Drawing shape name
+         * @param (params) Drawing info
+         */
+        virtual void execDrawShape(EShape name, std::vector<int32_t> params) = 0;
 
         /**
          * @brief  Execute print string
@@ -119,6 +128,13 @@ namespace sdfw
          * @param  (win_id)  Target window ID
          */
         void execSetBackground(Color color, int32_t win_id) override;
+
+        /**
+         * @brief  Execute drawing some shape
+         * @param (name) Drawing shape name
+         * @param (params) Drawing info
+         */
+        void execDrawShape(EShape name, std::vector<int32_t> params) override;
 
         /**
          * @brief  Execute print string

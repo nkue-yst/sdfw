@@ -149,6 +149,30 @@ namespace sdfw
         this->sendMessage(msg);
     }
 
+    void sdfwWinMessenger::execDrawShape(EShape name, std::vector<int32_t> params)
+    {
+        char msg[BUFF_SIZE] = "draw/";
+
+        switch (name)
+        {
+        case EShape::Line:
+            strcat_s(msg, "Line/");
+            strcat_s(msg, std::to_string(params.at(0)).c_str());
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(1)).c_str());
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(2)).c_str());
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(3)).c_str());
+            break;
+
+        default:
+            break;
+        }
+
+        this->sendMessage(msg);
+    }
+
     void sdfwWinMessenger::execPrint(std::string str, int32_t win_id)
     {
         char msg[BUFF_SIZE] = "print/";

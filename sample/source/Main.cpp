@@ -15,18 +15,22 @@ int main()
 
     int32_t win = openWindow(1280, 720);
 
-    std::string str;
+    std::string str1, str2;
     while (System::update())
     {
-        str = "Ticks: " + std::to_string(Time::getTicks()) + ", Time: " + std::to_string(Time::getMillisec()) + "ms";
+        str1 = "Ticks: " + std::to_string(Time::getTicks());
+        str2 = "Time1: " + std::to_string(Time::getMillisec()) + "ms";
+        print(str1);
+        print(str2);
 
-        print(str);
+        Line(500, 500, 600, 600).draw();
         
-        if (Time::getTicks() > 50000)
+        if (Time::getMillisec() > 10000)
             break;
     }
 
     delay(2000);
 
+    closeWindow(win);
     quit();
 }

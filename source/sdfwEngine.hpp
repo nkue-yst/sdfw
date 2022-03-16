@@ -74,6 +74,9 @@ namespace sdfw
         /// Start time stamp
         std::chrono::system_clock::time_point start_time_;
 
+        /// Previous frame time stamp
+        std::chrono::system_clock::time_point pre_time_;
+
     private:
         /// Engine components
         std::tuple<

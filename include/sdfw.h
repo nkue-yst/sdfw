@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Color.hpp"
+#include "Line.hpp"
 #include "Mouse.hpp"
 #include "Point.hpp"
 
@@ -46,6 +47,12 @@ namespace sdfw
          * @return  Elapsed time since the engine startup
          */
         uint32_t getMillisec();
+
+        /**
+         * @brief  Get average FPS until current frame
+         * @return  Average FPS until current frame
+         */
+        uint32_t getAverageFPS();
     }
 
     /**
