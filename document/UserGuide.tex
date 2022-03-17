@@ -96,6 +96,32 @@
 \function{void print(std::string str, int32\_t win\_id = 0)}{str: 文字列データ，win\_id: 描画先ウィンドウID}{無し}
 引数に指定した文字列を描画する．第2引数に描画を行うウィンドウIDを指定でき，デフォルトではメインウィンドウへの描画を行う．1フレーム内で複数回この関数を呼び出すと自動的に改行され，2回目以降の呼び出し時には次の行に出力される．
 
+\subsection{図形}
+図形各種は、基底クラスであるShapeクラスを継承したクラスのオブジェクト（インスタンス）を作成し、そのメンバ関数であるdraw()を呼び出すことで描画を行うことができる。
+
+\subsubsection{線分}
+線分の描画を行うにはLineを作成し、そのdraw()を呼び出す。
+\begin{lstlisting}[caption=使用例, keepspaces=true]
+  #include <sdfw.h>
+
+  using namespace sdfw;
+  
+  int main()
+  {
+      init();
+      int32_t win = openWindow(1280, 720);
+  
+      while (System::update())
+      {
+          // (500, 500)から(600, 600)までの線分を描画する
+          Line(500, 500, 600, 600).draw();
+      }
+  
+      closeWindow(win);
+      quit();
+  }
+\end{lstlisting}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % イベントに関する機能
