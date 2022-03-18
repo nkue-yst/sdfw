@@ -11,6 +11,11 @@ namespace sdfw
 {
     namespace Mouse
     {
+        Point pos()
+        {
+            return SDFW_ENGINE(Mouse)->current_pos_;
+        }
+
         bool pressed(int8_t button)
         {
             bool is_pressed = true;

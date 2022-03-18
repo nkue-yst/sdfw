@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "Point.hpp"
+
 #include <cstdint>
 
 namespace sdfw
@@ -15,6 +17,12 @@ namespace sdfw
 
     namespace Mouse
     {
+        /**
+         * @brief  Get cursor position
+         * @return  Current cursor position
+         */
+        Point pos();
+
         /**
          * @brief  Get is mouse button pressed
          * @param  (button)  Target button by mask

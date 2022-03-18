@@ -219,6 +219,7 @@ namespace sdfw
                 // For mouse events
                 if (word_list.at(0) == "Mouse")
                 {
+                    // For mouse button events
                     if (word_list.at(1) == "Button")
                     {
                         if (word_list.at(2) == "Down")
@@ -229,6 +230,12 @@ namespace sdfw
                         {
                             SDFW_ENGINE(Mouse)->onButtonUp(word_list.at(3).c_str(), stoi(word_list.at(4)), stoi(word_list.at(5)));
                         }
+                    }
+                    // For mouse coord info
+                    else if (word_list.at(1) == "X")
+                    {
+                        SDFW_ENGINE(Mouse)->current_pos_.x = stoi(word_list.at(2));
+                        SDFW_ENGINE(Mouse)->current_pos_.y = stoi(word_list.at(4));
                     }
                 }
                 

@@ -129,6 +129,34 @@
 \section{イベントに関する機能}
 以下の機能はSystem::update()が呼び出されたタイミングで状態が更新されているため，少し古い情報が得られる場合がある．
 \subsection{マウス入力}
+\subsubsection{マウスカーソル座標の取得}
+\function{Point pos()}{無し}{現在のマウスカーソル座標}
+現在のマウスカーソルの座標値をPoint型で取得できる。また、x座標・y座標はそれぞれメンバ変数x・yから取得できる。
+\begin{lstlisting}[caption=使用例, label=macro-GetMouseButtonState, keepspaces=true]
+#include <sdfw.h>
+#include <string>
+
+using namespace sdfw;
+
+int main()
+{
+    init();
+
+    int32_t win = openWindow(1280, 720);
+
+    std::string str;
+    while (System::update())
+    {
+        // マウスカーソルの座標をテキスト出力
+        str = "X: " + std::to_string(Mouse::pos().x) + ", Y: " + std::to_string(Mouse::pos().y);
+        print(str);
+    }
+
+    closeWindow(win);
+    quit();
+}
+\end{lstlisting}
+
 \subsubsection{マウスボタン入力状態の取得（押されているかを取得）}
 \function{bool pressed(int8\_t button)}{button: マウスボタン（マクロ）}{指定したマウスボタンが押されているか}
 入力状態を得たいマウスボタンの指定には，マクロによるビットマスクを使用する．ここで使用するマクロは以下の表\ref{macro-MouseButton}のように定義されている．また，これらをビットORで結合して引数に指定することで，複数のボタンが同時に入力されているかを得ることもできる．
