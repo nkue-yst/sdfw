@@ -32,8 +32,9 @@ namespace sdfw
 
         /**
          * @brief  Draw some shape
+         * @param (win) Target window ID
          */
-        virtual void draw() = 0;
+        virtual void draw(int32_t win = 0) = 0;
     };
 
 }

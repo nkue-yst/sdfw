@@ -22,7 +22,7 @@ int main()
         str = "X: " + std::to_string(Mouse::pos().x) + ", Y: " + std::to_string(Mouse::pos().y);
         print(str);
 
-        Line(1280, 720, Mouse::pos().x, Mouse::pos().y).draw();
+        Line(1280, 720, Mouse::pos().x, Mouse::pos().y, 5).draw();
 
         if (Time::getMillisec() > DURATION)
             break;

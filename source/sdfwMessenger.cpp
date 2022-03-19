@@ -164,6 +164,10 @@ namespace sdfw
             strcat_s(msg, std::to_string(params.at(2)).c_str());
             strcat_s(msg, "/");
             strcat_s(msg, std::to_string(params.at(3)).c_str());
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(4)).c_str());
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(5)).c_str());
             break;
 
         default:
