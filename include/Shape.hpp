@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "Color.hpp"
+
 #include <cstdint>
 
 namespace sdfw
@@ -32,9 +34,10 @@ namespace sdfw
 
         /**
          * @brief  Draw some shape
+         * @param (color) Drawing color
          * @param (win) Target window ID
          */
-        virtual void draw(int32_t win = 0) = 0;
+        virtual void draw(Color color = { 255, 255, 255 }, int32_t win = 0) = 0;
     };
 
 }

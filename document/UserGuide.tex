@@ -97,11 +97,11 @@
 引数に指定した文字列を描画する．第2引数に描画を行うウィンドウIDを指定でき，デフォルトではメインウィンドウへの描画を行う．1フレーム内で複数回この関数を呼び出すと自動的に改行され，2回目以降の呼び出し時には次の行に出力される．
 
 \subsection{図形の描画}
-\function{void Shape::draw(int32\_t win = 0)}{win: 描画ウィンドウID}{無し}
-図形各種は、基底クラスであるShapeクラスを継承したクラスのオブジェクト（インスタンス）を作成し、そのメンバ関数であるdraw()を呼び出すことで描画を行うことができる。
+\function{void Shape::draw(Color color = \{255, 255, 255\}, int32\_t win = 0)}{color: 描画する色，win: 描画ウィンドウID}{無し}
+図形各種は，基底クラスであるShapeクラスを継承したクラスのオブジェクト（インスタンス）を作成し，そのメンバ関数であるdraw()を呼び出すことで描画を行うことができる．
 
 \subsubsection{線分}
-線分の描画を行うにはLineを作成し、そのdraw()を呼び出す。
+線分の描画を行うにはLineを作成し，そのdraw()を呼び出す．
 \begin{lstlisting}[caption=使用例, keepspaces=true]
   #include <sdfw.h>
 
@@ -132,7 +132,7 @@
 \subsection{マウス入力}
 \subsubsection{マウスカーソル座標の取得}
 \function{Point pos()}{無し}{現在のマウスカーソル座標}
-現在のマウスカーソルの座標値をPoint型で取得できる。また、x座標・y座標はそれぞれメンバ変数x・yから取得できる。
+現在のマウスカーソルの座標値をPoint型で取得できる．また，x座標・y座標はそれぞれメンバ変数x・yから取得できる．
 \begin{lstlisting}[caption=使用例, label=macro-GetMouseButtonState, keepspaces=true]
 #include <sdfw.h>
 #include <string>
@@ -199,8 +199,8 @@ SDFWを初期化してからの経過時間をミリ秒で返す．
 
 \subsection{現在フレームまでの平均FPS値を取得する}
 \function{float getAverageFPS()}{無し}{平均FPS}
-現在のフレームまでの平均FPS値を取得する。\par
-※この値の精度は低い。
+現在のフレームまでの平均FPS値を取得する．\par
+※この値の精度は低い．
 
 
 \end{document}

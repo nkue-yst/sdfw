@@ -19,7 +19,7 @@ namespace sdfw
     {
     }
 
-    void Line::draw(int32_t win)
+    void Line::draw(Color color, int32_t win)
     {
         std::vector<int32_t> params;
         params.push_back(this->start_.x);
@@ -27,6 +27,9 @@ namespace sdfw
         params.push_back(this->end_.x);
         params.push_back(this->end_.y);
         params.push_back(this->thickness_);
+        params.push_back(color.r);
+        params.push_back(color.g);
+        params.push_back(color.b);
         params.push_back(win);
 
         SDFW_ENGINE(Messenger)->execDrawShape(EShape::Line, params);

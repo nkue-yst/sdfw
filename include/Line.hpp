@@ -29,9 +29,10 @@ namespace sdfw
 
         /**
          * @brief  Draw this line
+         * @param (color) Drawing color
          * @param (win) Target window ID
          */
-        void draw(int32_t win = 0) override;
+        void draw(Color color = { 255, 255, 255 }, int32_t win = 0) override;
 
     private:
         /// Start coordinate of line
