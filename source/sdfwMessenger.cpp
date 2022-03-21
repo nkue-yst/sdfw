@@ -120,9 +120,9 @@ namespace sdfw
     void sdfwWinMessenger::execOpenWindow(uint32_t width, uint32_t height)
     {
         char msg[BUFF_SIZE] = "openWindow/";
-        strcat_s(msg, std::to_string(width).c_str());
+        strcat_s(msg, std::to_string(width).c_str());   // New window width
         strcat_s(msg, "/");
-        strcat_s(msg, std::to_string(height).c_str());
+        strcat_s(msg, std::to_string(height).c_str());  // New window height
 
         this->sendMessage(msg);
     }
@@ -130,7 +130,7 @@ namespace sdfw
     void sdfwWinMessenger::execCloseWIndow(int32_t win_id)
     {
         char msg[BUFF_SIZE] = "closeWindow/";
-        strcat_s(msg, std::to_string(win_id).c_str());
+        strcat_s(msg, std::to_string(win_id).c_str());  // Target window ID
 
         this->sendMessage(msg);
     }
@@ -138,13 +138,13 @@ namespace sdfw
     void sdfwWinMessenger::execSetBackground(Color color, int32_t win_id)
     {
         char msg[BUFF_SIZE] = "setBackground/";
-        strcat_s(msg, std::to_string(color.r).c_str());
+        strcat_s(msg, std::to_string(color.r).c_str());  // Red value
         strcat_s(msg, "/");
-        strcat_s(msg, std::to_string(color.g).c_str());
+        strcat_s(msg, std::to_string(color.g).c_str());  // Green value
         strcat_s(msg, "/");
-        strcat_s(msg, std::to_string(color.b).c_str());
+        strcat_s(msg, std::to_string(color.b).c_str());  // Blue value
         strcat_s(msg, "/");
-        strcat_s(msg, std::to_string(win_id).c_str());
+        strcat_s(msg, std::to_string(win_id).c_str());  // Target window ID
 
         this->sendMessage(msg);
     }
@@ -157,23 +157,23 @@ namespace sdfw
         {
         case EShape::Line:
             strcat_s(msg, "Line/");
-            strcat_s(msg, std::to_string(params.at(0)).c_str());
+            strcat_s(msg, std::to_string(params.at(0)).c_str());  // x0
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(1)).c_str());
+            strcat_s(msg, std::to_string(params.at(1)).c_str());  // y0
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(2)).c_str());
+            strcat_s(msg, std::to_string(params.at(2)).c_str());  // x1
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(3)).c_str());
+            strcat_s(msg, std::to_string(params.at(3)).c_str());  // y1
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(4)).c_str());
+            strcat_s(msg, std::to_string(params.at(4)).c_str());  // Thickness
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(5)).c_str());
+            strcat_s(msg, std::to_string(params.at(5)).c_str());  // Red value
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(6)).c_str());
+            strcat_s(msg, std::to_string(params.at(6)).c_str());  // Green value
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(7)).c_str());
+            strcat_s(msg, std::to_string(params.at(7)).c_str());  // Blue value
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(8)).c_str());
+            strcat_s(msg, std::to_string(params.at(8)).c_str());  // Target window ID
             break;
 
         default:
@@ -186,9 +186,9 @@ namespace sdfw
     void sdfwWinMessenger::execPrint(std::string str, int32_t win_id)
     {
         char msg[BUFF_SIZE] = "print/";
-        strcat_s(msg, str.c_str());
+        strcat_s(msg, str.c_str());  // Output string
         strcat_s(msg, "/");
-        strcat_s(msg, std::to_string(win_id).c_str());
+        strcat_s(msg, std::to_string(win_id).c_str());  // Target window ID
 
         this->sendMessage(msg);
     }
