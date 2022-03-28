@@ -248,6 +248,11 @@ namespace sdfw
                         SDFW_ENGINE(Mouse)->current_pos_.y = stoi(word_list.at(4));
                     }
                 }
+                // For quit event
+                else if (word_list.at(0) == "QUIT")
+                {
+                    sdfwEngine::get()->loop_flag_ = false;
+                }
                 
                 /* Reset buffer and send sync message */
                 str_buff.clear();

@@ -58,7 +58,7 @@ namespace sdfw
             sdfwEngine::get()->pre_time_ = std::chrono::system_clock::now();
             sdfwEngine::get()->tick_++;
 
-            return true;
+            return sdfwEngine::get()->loop_flag_;
         }
     }
 
