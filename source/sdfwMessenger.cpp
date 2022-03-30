@@ -125,6 +125,8 @@ namespace sdfw
         strcat_s(msg, std::to_string(height).c_str());  // New window height
 
         this->sendMessage(msg);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
 
     void sdfwWinMessenger::execCloseWIndow(int32_t win_id)
@@ -173,7 +175,28 @@ namespace sdfw
             strcat_s(msg, "/");
             strcat_s(msg, std::to_string(params.at(7)).c_str());  // Blue value
             strcat_s(msg, "/");
-            strcat_s(msg, std::to_string(params.at(8)).c_str());  // Target window ID
+            strcat_s(msg, std::to_string(params.at(8)).c_str());  // Alpha value
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(9)).c_str());  // Target window ID
+            break;
+
+        case EShape::Circle:
+            strcat_s(msg, "Circle/");
+            strcat_s(msg, std::to_string(params.at(0)).c_str());  // x
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(1)).c_str());  // y
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(2)).c_str());  // r
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(3)).c_str());  // Red value
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(4)).c_str());  // Green value
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(5)).c_str());  // Blue value
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(6)).c_str());  // Alpha value
+            strcat_s(msg, "/");
+            strcat_s(msg, std::to_string(params.at(7)).c_str());  // Target window ID
             break;
 
         default:

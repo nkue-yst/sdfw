@@ -30,6 +30,7 @@ namespace sdfw
         params.push_back(color.r);
         params.push_back(color.g);
         params.push_back(color.b);
+        params.push_back(color.a);
         params.push_back(win);
 
         SDFW_ENGINE(Messenger)->execDrawShape(EShape::Line, params);

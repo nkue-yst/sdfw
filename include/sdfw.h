@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Circle.hpp"
 #include "Color.hpp"
 #include "Line.hpp"
 #include "Mouse.hpp"

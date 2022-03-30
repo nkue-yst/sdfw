@@ -39,13 +39,21 @@ if (WIN32)
 endif()
 
 
-### Create Target "Sample" ###
-set(SAMPLE_SRC
-    sample/source/Main.cpp
+### Create Target "SampleLineToCursor" ###
+set(SAMPLE_LINE_TO_CURSOR_SRC
+    sample/source/Sample_LineToCursor.cpp
 )
-add_executable(Sample ${SAMPLE_SRC})
-target_link_libraries(Sample sdfw)
+add_executable(Sample_LineToCursor ${SAMPLE_LINE_TO_CURSOR_SRC})
+target_link_libraries(Sample_LineToCursor sdfw)
+
+
+### Create Target "SampleFlower" ###
+set(SAMPLE_PAINT_SRC
+    sample/source/Sample_Paint.cpp
+)
+add_executable(Sample_Paint ${SAMPLE_PAINT_SRC})
+target_link_libraries(Sample_Paint sdfw)
 
 
 ### Setup startup project ###
-set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Sample)
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Sample_Paint)
