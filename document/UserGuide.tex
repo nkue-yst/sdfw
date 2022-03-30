@@ -22,6 +22,12 @@
   \tab \underline{返り値} \tab #3 \\\par
 }
 
+\newcommand{\class}[2]{
+  \noindent
+  \tab \underline{コンストラクタ} \\ \tab\tab \texttt{#1} \\
+  \tab \underline{引数} \\ \tab\tab #2 \\\par
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setting for source code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -101,7 +107,11 @@
 図形各種は，基底クラスであるShapeクラスを継承したクラスのオブジェクト（インスタンス）を作成し，そのメンバ関数であるdraw()を呼び出すことで描画を行うことができる．
 
 \subsubsection{線分}
-線分の描画を行うにはLineを作成し，そのdraw()を呼び出す．
+\class{Line(uint32\_t x0, uint32\_t y0, uint32\_t x1, uint32\_t y1, int32\_t thickness = 1)}{x0: 始点のx座標、y0: 始点のy座標、x1: 終点のx座標、y1: 終点のy座標、thickness: 太さ}
+
+\subsection{円}
+\class{Circle(uint32\_t x, uint32\_t y, uint32\_t r)}{x: 中心のx座標、y: 中心のy座標、r: 半径}
+
 \begin{lstlisting}[caption=使用例, keepspaces=true]
   #include <sdfw.h>
 
@@ -110,15 +120,17 @@
   int main()
   {
       init();
-      int32_t win = openWindow(1280, 720);
+      openWindow(1280, 720);
   
       while (System::update())
       {
           // (500, 500)から(600, 600)までの太さ1の線分を描画する
           Line(500, 500, 600, 600, 1).draw();
+
+          // (100, 100)を中心とする半径10の円を描画する
+          Circle(100, 100, 10).draw();
       }
   
-      closeWindow(win);
       quit();
   }
 \end{lstlisting}
@@ -143,7 +155,7 @@ int main()
 {
     init();
 
-    int32_t win = openWindow(1280, 720);
+    openWindow(1280, 720);
 
     std::string str;
     while (System::update())
@@ -153,7 +165,6 @@ int main()
         print(str);
     }
 
-    closeWindow(win);
     quit();
 }
 \end{lstlisting}
