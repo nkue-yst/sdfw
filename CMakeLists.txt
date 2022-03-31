@@ -55,5 +55,13 @@ add_executable(Sample_Paint ${SAMPLE_PAINT_SRC})
 target_link_libraries(Sample_Paint sdfw)
 
 
+### Create Target "SamplePingPong" ###
+set(SAMPLE_PINGPONG_SRC
+    sample/source/Sample_PingPong.cpp
+)
+add_executable(Sample_PingPong ${SAMPLE_PINGPONG_SRC})
+target_link_libraries(Sample_PingPong sdfw)
+
+
 ### Setup startup project ###
-set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Sample_Paint)
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Sample_PingPong)
