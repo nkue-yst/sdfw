@@ -35,6 +35,12 @@ public:
     {
     }
 
+    ~Ball()
+    {
+        delete se_reflection;
+        se_reflection = nullptr;
+    }
+
     void draw()
     {
         Circle(this->x, this->y, 10).draw();

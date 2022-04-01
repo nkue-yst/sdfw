@@ -15,13 +15,18 @@ namespace sdfw
     Audio::Audio(std::string path)
         : Asset(path)
     {
-        std::cout << this->path_ << std::endl << std::endl;
         SDFW_ENGINE(Messenger)->execLoadAudioAsset(this->path_.string());
     }
 
     void Audio::play()
     {
         SDFW_ENGINE(Messenger)->execPlayAudio(this);
+    }
+
+    void playAudio(std::string path)
+    {
+        Audio audio(path);
+        SDFW_ENGINE(Messenger)->execPlayAudio(&audio);
     }
 
 }
