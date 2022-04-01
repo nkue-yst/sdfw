@@ -40,23 +40,39 @@ public:
         Circle(this->x, this->y, 10).draw();
     }
 
+    void paddleReflection()
+    {
+        this->dx *= -1;
+        se_reflection->play();
+    }
+
+    void wallReflection()
+    {
+        this->dy *= -1;
+        se_reflection->play();
+    }
+
     uint32_t x, y, dx, dy;
+    Audio* se_reflection;
 };
 
 int main()
 {
-    std::random_device rnd;
-    Paddle player, npc;
-    Ball ball;
-    uint32_t score_player = 0;
-    uint32_t score_npc = 0;
-
-    player.x = 0 + 100;
-    npc.x = WIDTH - 100;
-
     init();
     openWindow(WIDTH, HEIGHT);
     Scene::setBackground(Color(0, 0, 0));
+
+    std::random_device rnd;
+    Paddle* player = new Paddle();
+    Paddle* npc = new Paddle();
+    Ball* ball = new Ball();
+
+    uint32_t score_player = 0;
+    uint32_t score_npc = 0;
+
+    player->x = 0 + 100;
+    npc->x = WIDTH - 100;
+    ball->se_reflection = new Audio("sample_01.mp3");
 
     while (System::update())
     {
@@ -64,55 +80,58 @@ int main()
         print(std::to_string(score_player) + " - " + std::to_string(score_npc));
 
         // Player's paddle movement
-        player.y = Mouse::pos().y - 100;
+        player->y = Mouse::pos().y - 100;
 
         // NPC's paddle movement
-        npc.y = ball.y - 100 + 80;
+        npc->y = ball->y - 100 + 80;
 
         // Update X (Judge goal)
-        if (ball.x + ball.dx >= WIDTH)
+        if (ball->x + ball->dx >= WIDTH)
         {
             score_player++;
-            ball.x = WIDTH / 2;
-            ball.y = HEIGHT / 2;
+            ball->x = WIDTH / 2;
+            ball->y = HEIGHT / 2;
         }
-        else if (ball.x + ball.dx <= 0)
+        else if (ball->x + ball->dx <= 0)
         {
             score_npc++;
-            ball.x = WIDTH / 2;
-            ball.y = HEIGHT / 2;
+            ball->x = WIDTH / 2;
+            ball->y = HEIGHT / 2;
         }
         else
         {
-            ball.x += ball.dx;
+            ball->x += ball->dx;
         }
 
         // Update Y
-        if (ball.y + ball.dy >= HEIGHT)
+        if (ball->y + ball->dy >= HEIGHT)
         {
-            ball.dy *= -1;
+            ball->wallReflection();
         }
         else
         {
-            ball.y += ball.dy;
+            ball->y += ball->dy;
         }
 
         // Player's paddle reflection
-        if (player.x <= ball.x - 5 && ball.x - 5 <= player.x + 5 && player.y <= ball.y && ball.y <= player.y + 200)
+        if (player->x <= ball->x - 5 && ball->x - 5 <= player->x + 5 && player->y <= ball->y && ball->y <= player->y + 200)
         {
-            ball.dx *= -1;
+            ball->paddleReflection();
         }
         
         // NPC's paddle reflection
-        if (npc.x - 5 <= ball.x + 5 && ball.x + 5 <= npc.x + 5 && npc.y <= ball.y && ball.y <= npc.y + 200)
+        if (npc->x - 5 <= ball->x + 5 && ball->x + 5 <= npc->x + 5 && npc->y <= ball->y && ball->y <= npc->y + 200)
         {
-            ball.dx *= -1;
+            ball->paddleReflection();
         }
 
-        ball.draw();
-        player.draw();
-        npc.draw();
+        ball->draw();
+        player->draw();
+        npc->draw();
     }
 
+    delete player;
+    delete npc;
+    delete ball;
     quit();
 }

@@ -73,6 +73,9 @@ namespace sdfw
          */
         virtual void execPrint(std::string str, int32_t win_id) = 0;
 
+        virtual void execLoadAudioAsset(std::string path) = 0;
+        virtual void execPlayAudio(class Audio* audio) = 0;
+
         /**
          * @brief  Execute system update
          */
@@ -142,6 +145,9 @@ namespace sdfw
          * @param  (win_id) The ID of window to print string
          */
         void execPrint(std::string str, int32_t win_id) override;
+
+        void execLoadAudioAsset(std::string path) override;
+        void execPlayAudio(class Audio* audio) override;
 
         /**
          * @brief  Execute system update

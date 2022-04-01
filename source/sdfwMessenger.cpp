@@ -4,6 +4,7 @@
  */
 
 #include "sdfwMessenger.hpp"
+#include "Audio.hpp"
 #include "sdfwEngine.hpp"
 #include "sdfwMouse.hpp"
 
@@ -212,6 +213,22 @@ namespace sdfw
         strcat_s(msg, str.c_str());  // Output string
         strcat_s(msg, "/");
         strcat_s(msg, std::to_string(win_id).c_str());  // Target window ID
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwWinMessenger::execLoadAudioAsset(std::string path)
+    {
+        char msg[BUFF_SIZE] = "load/Audio/";
+        strcat_s(msg, path.c_str());
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwWinMessenger::execPlayAudio(Audio* audio)
+    {
+        char msg[BUFF_SIZE] = "play/Audio/";
+        strcat_s(msg, audio->path_.string().c_str());
 
         this->sendMessage(msg);
     }

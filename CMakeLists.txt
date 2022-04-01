@@ -63,5 +63,13 @@ add_executable(Sample_PingPong ${SAMPLE_PINGPONG_SRC})
 target_link_libraries(Sample_PingPong sdfw)
 
 
+### Copy asset to build directory ###
+file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/sample/Resource/*)
+add_custom_command(
+    TARGET sdfw POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy ${RESOURCE_FILES} ${CMAKE_BINARY_DIR}
+)
+
+
 ### Setup startup project ###
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Sample_PingPong)

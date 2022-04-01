@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Audio.hpp"
 #include "Circle.hpp"
 #include "Color.hpp"
 #include "Line.hpp"
