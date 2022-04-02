@@ -17,8 +17,8 @@ namespace sdfw
         Audio(std::string path);
 
         void play();
-    };
 
-    void playAudio(std::string path);
+        static void play(std::string path);
+    };
 
 }

@@ -64,9 +64,9 @@ target_link_libraries(Sample_PingPong sdfw)
 
 
 ### Copy asset to build directory ###
-file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/sample/Resource/*)
+file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/sample/Resource/sample_01.mp3)
 add_custom_command(
-    TARGET sdfw POST_BUILD
+    TARGET Sample_PingPong POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy ${RESOURCE_FILES} ${CMAKE_BINARY_DIR}
 )
 

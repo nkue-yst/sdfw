@@ -23,7 +23,7 @@ namespace sdfw
         SDFW_ENGINE(Messenger)->execPlayAudio(this);
     }
 
-    void playAudio(std::string path)
+    void Audio::play(std::string path)
     {
         Audio audio(path);
         SDFW_ENGINE(Messenger)->execPlayAudio(&audio);
