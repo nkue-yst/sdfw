@@ -103,7 +103,7 @@ namespace sdfw
     };
 
 
-#ifdef __WIN64
+#ifdef _WIN64
     /**
      * @brief  Socket class for Windows
      */

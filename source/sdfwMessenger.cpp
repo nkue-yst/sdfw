@@ -32,7 +32,7 @@ namespace sdfw
     #endif
     }
 
-#ifdef __WIN64
+#ifdef _WIN64
     sdfwWinMessenger::sdfwWinMessenger()
         : cmd_sock_(0)
     {
