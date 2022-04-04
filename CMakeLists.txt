@@ -25,7 +25,7 @@ if(MSVC)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
     endif()
 elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-variable")
 endif()
 
 
@@ -36,6 +36,9 @@ set(SDFW_SRC ${SDFW_FILE})
 add_library(sdfw STATIC ${SDFW_SRC})
 if (WIN32)
     target_link_libraries(sdfw ws2_32)
+elseif(UNIX)
+    find_package(Threads REQUIRED)
+    target_link_libraries(sdfw Threads::Threads)
 endif()
 
 

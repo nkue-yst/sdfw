@@ -5,6 +5,7 @@
 
 #include "sdfwMouse.hpp"
 
+#include <cstring>
 #include <iostream>
 #include <string>
 

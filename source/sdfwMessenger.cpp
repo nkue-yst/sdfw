@@ -11,6 +11,7 @@
 #include <charconv>
 #include <thread>
 #include <chrono>
+#include <cstring>
 #include <iostream>
 #include <string>
 
@@ -27,10 +28,11 @@ namespace sdfw
     #if defined _WIN64
         return new sdfwWinMessenger();
     #elif defined __unix
-        return new sdfwUnixSocket();
+        return new sdfwUnixMessenger();
     #endif
     }
 
+#ifdef __WIN64
     sdfwWinMessenger::sdfwWinMessenger()
         : cmd_sock_(0)
     {
@@ -333,4 +335,262 @@ namespace sdfw
 
         return words;
     }
+#endif
+
+#ifdef __unix
+    sdfwUnixMessenger::sdfwUnixMessenger()
+    {
+    }
+
+    sdfwUnixMessenger::~sdfwUnixMessenger()
+    {
+    }
+
+    void sdfwUnixMessenger::init()
+    {
+        /* Create socket for command */
+        this->cmd_sock_ = socket(AF_INET, SOCK_STREAM, 0);
+
+        /* Settings for server for command */
+        this->cmd_server_.sin_family = AF_INET;
+        this->cmd_server_.sin_port = htons(62491);
+        this->cmd_server_.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+        /* Connect to server for command */
+        connect(this->cmd_sock_, (sockaddr*)&this->cmd_server_, sizeof(this->cmd_server_));
+
+        /* Create socket for command */
+        this->ev_sock_ = socket(AF_INET, SOCK_STREAM, 0);
+
+        /* Settings for server for event */
+        this->ev_server_.sin_family = AF_INET;
+        this->ev_server_.sin_port = htons(62492);
+        this->ev_server_.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+        /* Connect to server for event */
+        connect(this->ev_sock_, (sockaddr*)&this->ev_server_, sizeof(this->ev_server_));
+    }
+
+    void sdfwUnixMessenger::sendMessage(const char* msg)
+    {
+        recv(this->cmd_sock_, &this->sync_msg_buff_, sizeof(char), 0);
+        send(this->cmd_sock_, msg, static_cast<int32_t>(strlen(msg) + 1), 0);
+    }
+
+    void sdfwUnixMessenger::execOpenWindow(uint32_t width, uint32_t height)
+    {
+        char msg[BUFF_SIZE] = "openWindow/";
+        strcat(msg, (std::to_string(width) + "/").c_str());   // New window width
+        strcat(msg, std::to_string(height).c_str());  // New window height
+
+        this->sendMessage(msg);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(33));        
+    }
+
+    void sdfwUnixMessenger::execCloseWIndow(int32_t win_id)
+    {
+        char msg[BUFF_SIZE] = "closeWindow/";
+        strcat(msg, std::to_string(win_id).c_str());  // Target window ID
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execSetBackground(Color color, int32_t win_id)
+    {
+        char msg[BUFF_SIZE] = "setBackground/";
+        strcat(msg, std::to_string(color.r).c_str());  // Red value
+        strcat(msg, "/");
+        strcat(msg, std::to_string(color.g).c_str());  // Green value
+        strcat(msg, "/");
+        strcat(msg, std::to_string(color.b).c_str());  // Blue value
+        strcat(msg, "/");
+        strcat(msg, std::to_string(win_id).c_str());  // Target window ID
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execDrawShape(EShape name, std::vector<int32_t> params)
+    {
+        char msg[BUFF_SIZE] = "draw/";
+
+        switch (name)
+        {
+        case EShape::Line:
+            strcat(msg, "Line/");
+            strcat(msg, std::to_string(params.at(0)).c_str());  // x0
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(1)).c_str());  // y0
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(2)).c_str());  // x1
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(3)).c_str());  // y1
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(4)).c_str());  // Thickness
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(5)).c_str());  // Red value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(6)).c_str());  // Green value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(7)).c_str());  // Blue value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(8)).c_str());  // Alpha value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(9)).c_str());  // Target window ID
+            break;
+
+        case EShape::Circle:
+            strcat(msg, "Circle/");
+            strcat(msg, std::to_string(params.at(0)).c_str());  // x
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(1)).c_str());  // y
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(2)).c_str());  // r
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(3)).c_str());  // Red value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(4)).c_str());  // Green value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(5)).c_str());  // Blue value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(6)).c_str());  // Alpha value
+            strcat(msg, "/");
+            strcat(msg, std::to_string(params.at(7)).c_str());  // Target window ID
+            break;
+
+        default:
+            break;
+        }
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execPrint(std::string str, int32_t win_id)
+    {
+        char msg[BUFF_SIZE] = "print/";
+        strcat(msg, str.c_str());  // Output string
+        strcat(msg, "/");
+        strcat(msg, std::to_string(win_id).c_str());  // Target window ID
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execLoadAudioAsset(std::string path)
+    {
+        char msg[BUFF_SIZE] = "load/Audio/";
+        strcat(msg, path.c_str());
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execPlayAudio(Audio* audio)
+    {
+        char msg[BUFF_SIZE] = "play/Audio/";
+        strcat(msg, audio->path_.string().c_str());
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execUpdate()
+    {
+        char msg[BUFF_SIZE] = "update";
+
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::execQuit()
+    {
+        char msg[BUFF_SIZE] = "quit";
+        
+        this->sendMessage(msg);
+    }
+
+    void sdfwUnixMessenger::recvEvents()
+    {
+        char buff;
+        std::string str_buff;
+        std::vector<std::string> word_list;
+
+        char sync_msg = '0';
+        send(this->ev_sock_, &sync_msg, sizeof(sync_msg), 0);
+
+        while (sdfwEngine::get()->loop_flag_)
+        {
+            recv(this->ev_sock_, &buff, sizeof(char), 0);
+
+            if (buff == '\0')
+            {
+                // Converting from string to word list
+                word_list = this->parseMessage(str_buff);
+                
+                /* Store received events by category */
+                // For mouse events
+                if (word_list.at(0) == "Mouse")
+                {
+                    // For mouse button events
+                    if (word_list.at(1) == "Button")
+                    {
+                        if (word_list.at(2) == "Down")
+                        {
+                            SDFW_ENGINE(Mouse)->onButtonDown(word_list.at(3).c_str(), stoi(word_list.at(4)), stoi(word_list.at(5)));
+                        }
+                        else if (word_list.at(2) == "Up")
+                        {
+                            SDFW_ENGINE(Mouse)->onButtonUp(word_list.at(3).c_str(), stoi(word_list.at(4)), stoi(word_list.at(5)));
+                        }
+                    }
+                    // For mouse coord info
+                    else if (word_list.at(1) == "X")
+                    {
+                        SDFW_ENGINE(Mouse)->current_pos_.x = stoi(word_list.at(2));
+                        SDFW_ENGINE(Mouse)->current_pos_.y = stoi(word_list.at(4));
+                    }
+                }
+                // For quit event
+                else if (word_list.at(0) == "QUIT")
+                {
+                    sdfwEngine::get()->loop_flag_ = false;
+                }
+                
+                /* Reset buffer and send sync message */
+                str_buff.clear();
+                send(this->ev_sock_, &sync_msg, sizeof(sync_msg), 0);
+            }
+            else
+            {
+                str_buff += buff;
+            }
+        }
+    }
+
+    std::vector<std::string> sdfwUnixMessenger::parseMessage(const std::string& str, const char delimiter)
+    {
+        std::vector<std::string> words;
+        std::string word;
+
+        for (int8_t c : str)
+        {
+            if (c == delimiter)
+            {
+                if (!word.empty())
+                {
+                    words.push_back(word);
+                }
+                word.clear();
+            }
+            else
+            {
+                word += c;
+            }
+        }
+
+        if (!word.empty())
+        {
+            words.push_back(word);
+        }
+
+        return words;
+    }
+#endif
+
 }
